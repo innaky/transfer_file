@@ -7,10 +7,10 @@
 
 -behaviour(application).
 
--export([start/1, rpc/4, get_file/2, list_files/1).
+-export([start/1, rpc/4, get_file/2, list_files/1]).
 
 start(Node) ->
-    spawn(fun() ->
+    spawn(Node, fun() ->
 		  loop() end).
 
 rpc(Pid, Module, Fun, Args) ->
