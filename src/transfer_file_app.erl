@@ -7,7 +7,7 @@
 
 -behaviour(application).
 
--export([start/1, rpc/4, get_file/2, list_files/1]).
+-export([start/1, stop/1, rpc/4, get_file/2, list_files/1]).
 
 start(Node) ->
     spawn(Node, fun() ->
@@ -26,6 +26,9 @@ get_file(Pid, File) ->
 
 list_files(Pid) ->
     transfer_file_app:rpc(Pid, file, list_dir, ["."]).
+
+stop(Pid) ->
+    exit(Pid, ok).
 
 %% internal functions
 
